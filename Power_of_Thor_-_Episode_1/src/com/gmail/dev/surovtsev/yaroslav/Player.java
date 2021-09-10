@@ -2,72 +2,60 @@ import java.util.*;
 import java.io.*;
 import java.math.*;
 
-/**
- * Auto-generated code below aims at helping you parse
- * the standard input according to the problem statement.
- * ---
- * Hint: You can use the debug stream to print initialTX and initialTY, if Thor seems not follow your orders.
- **/
 class Player {
 
     public static void main(String args[]) {
         Scanner in = new Scanner(System.in);
-        int lightX = in.nextInt(); // the X position of the light of power
-        int lightY = in.nextInt(); // the Y position of the light of power
-        int initialTx = in.nextInt(); // Thor's starting X position
-        int initialTy = in.nextInt(); // Thor's starting Y position
+        int lightX = in.nextInt();
+        int lightY = in.nextInt();
+        int initialTx = in.nextInt();
+        int initialTy = in.nextInt();
 
         int currTx = initialTx;
         int currTy = initialTy;
+        String dir = "";
 
-        // game loop
         while (true) {
-            int remainingTurns = in.nextInt(); // The remaining amount of turns Thor can move. Do not remove this line.
+            int remainingTurns = in.nextInt();
 
-            // Write an action using System.out.println()
-            // To debug: System.err.println("Debug messages...");
-
-            System.err.println("remainingTurns: " + remainingTurns);
-            System.err.println("currTx: " + currTx);
-            System.err.println("currTy: " + currTy);
-
-            // A single line providing the move to be made: N NE E SE S SW W or NW
             if (currTx < lightX && currTy == lightY) {
-                System.out.println("E");
+                dir = "E";
                 initialTx++;
             }
             if (currTx > lightX && currTy == lightY) {
-                System.out.println("W");
+                dir = "W";
                 initialTx--;
             }
             if (currTx == lightX && currTy > lightY) {
-                System.out.println("N");
+                dir = "N";
                 currTy--;
             }
             if (currTx == lightX && currTy < lightY) {
-                System.out.println("S");
+                dir = "S";
                 currTy++;
             }
             if (currTx > lightX && currTy < lightY) {
-                System.out.println("SW");
+                dir = "SW";
                 currTx--;
                 currTy++;
             }
             if (currTx > lightX && currTy > lightY) {
-                System.out.println("NW");
+                dir = "NW";
                 currTx--;
                 currTy--;
             }
             if (currTx < lightX && currTy > lightY) {
-                System.out.println("NE");
+                dir = "NE";
                 currTx++;
                 currTy--;
             }
             if (currTx < lightX && currTy < lightY) {
-                System.out.println("SE");
+                dir = "SE";
                 currTx++;
                 currTy++;
             }
+
+            System.out.println(dir);
         }
     }
 }
